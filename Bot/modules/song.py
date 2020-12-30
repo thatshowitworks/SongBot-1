@@ -19,13 +19,25 @@ def yt_search(song):
         video_id = result["result"][0]["id"]
         url = f"https://youtu.be/{video_id}"
         return url
-
+    
+async def user_in_chat(user_id, chat_id="anime_world_1"):
+    try:
+        await app.get_chat_member(chat_id, user_id)
+        status = True
+    except:
+        status = False
+    return status
 
 @app.on_message(filters.create(ignore_blacklisted_users) & filters.command("song"))
 async def song(client, message):
     chat_id = message.chat.id
     user_id = message.from_user["id"]
     add_chat_to_db(str(chat_id))
+    if not await user_in_chat(user_id):
+        keyboard = InlineKeyboardMarkup(
+            [[InlineKeyboardButton(text="Join Channel", url="https://t.me/anime_world_1")]])
+        await app.send_message(chat_id=message.chat.id, text="You must be a member of the Channel to use this bot", reply_markup=keyboard)
+        return ""
     args = get_arg(message) + " " + "song"
     if args.startswith(" "):
         await message.reply("Enter a song name. Check /help")
