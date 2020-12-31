@@ -35,8 +35,8 @@ async def song(client, message):
     add_chat_to_db(str(chat_id))
     if not await user_in_chat(user_id):
         keyboard = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Join Channel", url="https://t.me/anime_world_1")]])
-        await app.send_message(chat_id=message.chat.id, text="You must be a member of the Channel to use this bot", reply_markup=keyboard)
+            [[InlineKeyboardButton(text="Join Our Channel", url="https://t.me/anime_world_1")]])
+        await app.send_message(chat_id=message.chat.id, text="Being A Member Of Our Channel Is Required To Use This Bot.", reply_markup=keyboard)
         return ""
     args = get_arg(message) + " " + "song"
     if args.startswith(" "):

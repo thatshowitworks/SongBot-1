@@ -33,7 +33,7 @@ async def start(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        text="Source code", url="https://github.com/okay-retard/SongBot"
+                        text="Join Our Channel", url="https://telegram.dog/anime_world_1"
                     )
                 ]
             ]
@@ -49,7 +49,7 @@ async def help(client, message):
     if message.from_user["id"] == OWNER_ID:
         await message.reply(owner_help)
         return ""
-    text = "Syntax: /song song name"
+    text = "Usage : /song song name"
     await message.reply(text)
 
 
